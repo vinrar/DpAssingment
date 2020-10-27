@@ -46,7 +46,8 @@ public class AttendanceReport24 {
     private void populateDecorator() {
         for (int i = 0; i < attendanceStoreObjects.size(); i++) {
             Student studentObject = attendanceStoreObjects.get(i).getAsuId();
-            studentObject.add(new StudentAttendance22(attendanceStoreObjects.get(i).getAttendendeData(), Integer.parseInt(attendanceStoreObjects.get(i).getAttendendeValue())));
+            if (studentObject != null && attendanceStoreObjects.get(i).getAttendendeValue() != null && !attendanceStoreObjects.get(i).getAttendendeValue().isEmpty())
+                studentObject.add(new StudentAttendance22(attendanceStoreObjects.get(i).getAttendendeData(), Integer.parseInt(attendanceStoreObjects.get(i).getAttendendeValue())));
         }
     }
 

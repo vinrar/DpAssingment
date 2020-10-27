@@ -1,4 +1,4 @@
-package dp;//21
+package dp;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -50,7 +50,6 @@ public class StudentRepository21 extends Observable implements Container21 {
         }
     }
 
-
     @Override
     public Iterator21 getIterator() {
         return new StudentIterator();
@@ -80,4 +79,9 @@ public class StudentRepository21 extends Observable implements Container21 {
         }
     }
 
+    @Override
+    public void notifyObservers() {
+        setChanged();
+        notifyObservers(null);
+    }
 }
