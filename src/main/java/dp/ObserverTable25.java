@@ -18,7 +18,6 @@ public class ObserverTable25 extends JPanel implements Observer {
         // Get the column names using the observable
         String colName[] = getColumnNames(o);
 
-        // Count the number of students in the repositoryś
         Iterator21 iterator = ((StudentRepository21) o).getIterator();
         int noOfStudents = 0;
         while (iterator.hasNext()) {
@@ -32,19 +31,24 @@ public class ObserverTable25 extends JPanel implements Observer {
         int i = 0;
         while (iterator.hasNext()) {
             int j = 0;
-            Student student = (Student) iterator.next();
+            Decorator22StudentCoreData student = (Decorator22StudentCoreData) iterator.next();
             data[i][j++] = student.getId();
             data[i][j++] = student.getFirstName();
             data[i][j++] = student.getLastName();
             data[i][j++] = student.getLevel();
             data[i][j++] = student.getProgram();
             data[i][j++] = student.getAsurite();
-            for (StudentGrades22 g : student.getGradesList()) {
-                data[i][j++] = g.score;
+
+            if (student.getGradesList() != null) {
+                for (Decorator22StudentGrades g : student.getGradesList()) {
+                    data[i][j++] = g.score;
+                }
             }
 
-            for (StudentAttendance22 a : student.getAttendanceList()) {
-                data[i][j++] = a.min;
+            if (student.getAttendanceList() != null) {
+                for (Decorator22StudentAttendance a : student.getAttendanceList()) {
+                    data[i][j++] = a.min;
+                }
             }
 
             i++;
@@ -76,17 +80,23 @@ public class ObserverTable25 extends JPanel implements Observer {
         // Add columns for the grades
         Iterator21 iterator = ((StudentRepository21) o).getIterator();
 
-        Student student = (Student) iterator.next();
-        for (StudentGrades22 g : student.getGradesList()) {
-            if (!columnName.contains(g.name)) {
-                columnName.add(g.name);
+        Decorator22StudentCoreData student = (Decorator22StudentCoreData) iterator.next();
+        ArrayList<Decorator22StudentGrades> list = student.getGradesList();
+        if (list != null) {
+            for (Decorator22StudentGrades g : list) {
+                if (!columnName.contains(g.name)) {
+                    columnName.add(g.name);
+                }
             }
         }
 
         // Add columns for the attendance
-        for (StudentAttendance22 a : student.getAttendanceList()) {
-            if (!columnName.contains(a.date)) {
-                columnName.add(a.date);
+        if (student.getAttendanceList() != null) {
+
+            for (Decorator22StudentAttendance a : student.getAttendanceList()) {
+                if (!columnName.contains(a.date)) {
+                    columnName.add(a.date);
+                }
             }
         }
 

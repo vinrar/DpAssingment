@@ -31,10 +31,14 @@ public class AttendanceReport24 {
 
             while (fileReader.hasNextLine()) {
                 String tempStore = fileReader.nextLine();
-                String[] attendaceRow = tempStore.split(", ");
-                Student studentObj = getStudentObject(attendaceRow[0]);
-                attendanceStoreObjects.add(new AttendenceStore24(studentObj, storeColumnNames[1], attendaceRow[0]));
-                //studentObj.add(new AttendanceDecortator(attendance));
+                if (!tempStore.isEmpty()) {
+                	String[] attendaceRow = tempStore.split(",");
+                    String[] userEmail = attendaceRow[0].split("@");
+                    String temp = userEmail[0];
+                    Decorator22Student studentObj = getStudentObject(temp);
+                    attendanceStoreObjects.add(new AttendenceStore24(studentObj, storeColumnNames[1], attendaceRow[1]));
+                    //studentObj.add(new AttendanceDecortator(attendance));
+                }
             }
 
             fileReader.close();
@@ -45,19 +49,21 @@ public class AttendanceReport24 {
 
     private void populateDecorator() {
         for (int i = 0; i < attendanceStoreObjects.size(); i++) {
-            Student studentObject = attendanceStoreObjects.get(i).getAsuId();
+            Decorator22Student studentObject = attendanceStoreObjects.get(i).getAsuId();
+            Decorator22StudentAttendance attendanceCard = null;
             if (studentObject != null && attendanceStoreObjects.get(i).getAttendendeValue() != null && !attendanceStoreObjects.get(i).getAttendendeValue().isEmpty())
-                studentObject.add(new StudentAttendance22(attendanceStoreObjects.get(i).getAttendendeData(), Integer.parseInt(attendanceStoreObjects.get(i).getAttendendeValue())));
+            	attendanceCard = new Decorator22StudentAttendance(attendanceStoreObjects.get(i).getAttendendeData(), Integer.parseInt(attendanceStoreObjects.get(i).getAttendendeValue()));
+            	studentObject.addAttendance(attendanceCard);
         }
     }
 
-    private Student getStudentObject(String asuId) {
+    private Decorator22Student getStudentObject(String asuId) {
         Iterator21 iterator21 = studentRepo.getIterator();
         while (iterator21.hasNext()) {
 
-            Student student = (Student) iterator21.next();
-            if (student.getAsurite().equals(asuId)) {
-                return student;
+            Decorator22Student decorator22Student = (Decorator22Student) iterator21.next();
+            if (decorator22Student.getAsurite().equals(asuId)) {
+                return decorator22Student;
             }
         }
         return null;

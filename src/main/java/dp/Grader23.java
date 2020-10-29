@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Grader23 {
     private String path;
     private List<List<String>> grades;
-    private static StudentRepository21 studentRepository;
+    private StudentRepository21 studentRepository;
 
     public Grader23(StudentRepository21 studentRepository, String path) {
         this.studentRepository = studentRepository;
@@ -19,15 +19,16 @@ public class Grader23 {
 
     public void iterateRepository() {
         Iterator21 studentIterator = studentRepository.getIterator();
+        //System.out.println(grades.get(0).size());
         while (studentIterator.hasNext()) {
-            Student student = (Student) studentIterator.next();
-            String id = student.getAsurite();
+            Decorator22Student decorator22Student = (Decorator22Student) studentIterator.next();
+            String id = decorator22Student.getAsurite();
             for (int i = 1; i < grades.size(); i++) {
                 if (grades.get(i).size() > 0 && grades.get(i).get(0).equals(id)) {
-                    for (int j = 1; j < grades.size(); j++) {
-                        StudentGrades22 gradesCard;
-                        gradesCard = new StudentGrades22(grades.get(0).get(j), Integer.parseInt(grades.get(i).get(j)));
-                        student.addGrades(gradesCard);
+                    for (int j = 1; j < grades.get(i).size(); j++) {
+                        Decorator22StudentGrades gradesCard;
+                        gradesCard = new Decorator22StudentGrades(grades.get(0).get(j), Integer.parseInt(grades.get(i).get(j)));
+                        decorator22Student.addGrades(gradesCard);
                     }
                 }
             }
@@ -42,6 +43,7 @@ public class Grader23 {
             while (scanner.hasNextLine()) {
                 grades.add(getGradesFromLine(scanner.nextLine()));
             }
+            scanner.close();
         } catch (Exception e) {
             System.out.println("File not exist");
             e.printStackTrace();

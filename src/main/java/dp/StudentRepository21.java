@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-@SuppressWarnings("deprecation")
 public class StudentRepository21 extends Observable implements Container21 {
 
     private String subjectState;
@@ -30,7 +29,7 @@ public class StudentRepository21 extends Observable implements Container21 {
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
                 if (i > 0 && values.length > 1) {
-                    StudentCoreData22 newStudent = new StudentCoreData22();
+                    Decorator22StudentCoreData newStudent = new Decorator22StudentCoreData();
                     newStudent.setId(Integer.parseInt(values[0]));
                     newStudent.setFirstName(values[1]);
                     newStudent.setLastName(values[2]);
@@ -50,6 +49,17 @@ public class StudentRepository21 extends Observable implements Container21 {
         }
     }
 
+    public void addGradess(int i){
+        Decorator22StudentCoreData newStudent = new Decorator22StudentCoreData();
+        newStudent.setId(1);
+        newStudent.setFirstName("3");
+        newStudent.setLastName("4");
+        newStudent.setProgram("5");
+        newStudent.setLevel("6");
+        newStudent.setAsurite("7");
+        students.add(newStudent);
+        notifyObservers();
+    }
     @Override
     public Iterator21 getIterator() {
         return new StudentIterator();

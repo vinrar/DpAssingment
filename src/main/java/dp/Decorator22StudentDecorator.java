@@ -1,31 +1,34 @@
-package dp;// ID - 22
-
+package dp;
 import java.util.ArrayList;
 
-public class StudentDecorator22 implements Student {
+public class Decorator22StudentDecorator implements Decorator22Student {
 
-    protected Student s;
+    protected Decorator22Student s;
 
-    ArrayList<StudentGrades22> gradeList = new ArrayList<StudentGrades22>();
-    ArrayList<StudentAttendance22> attendanceList = new ArrayList<StudentAttendance22>();
+    ArrayList<Decorator22StudentGrades> gradeList = new ArrayList<Decorator22StudentGrades>();
+    ArrayList<Decorator22StudentAttendance> attendanceList = new ArrayList<Decorator22StudentAttendance>();
 
-    public void add(Student s) {
+    public void add(Decorator22Student s) {
         this.s = s;
     }
 
-    public void addAttendance(StudentAttendance22 attCard) {
+    public void addAttendance(Decorator22StudentAttendance attCard) {
         this.attendanceList.add(attCard);
     }
 
-    public void addGrades(StudentGrades22 gradCard) {
+    public void addGrades(String name, int i){
+
+    }
+    public void addGrades(Decorator22StudentGrades gradCard) {
+        System.out.println("dddss");
         this.gradeList.add(gradCard);
     }
 
-    public ArrayList<StudentAttendance22> getAttendanceList() {
+    public ArrayList<Decorator22StudentAttendance> getAttendanceList() {
         return attendanceList;
     }
 
-    public ArrayList<StudentGrades22> getGradesList() {
+    public ArrayList<Decorator22StudentGrades> getGradesList() {
         return gradeList;
     }
 

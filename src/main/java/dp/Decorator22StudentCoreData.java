@@ -1,17 +1,18 @@
 package dp;
-
 import java.util.ArrayList;
 
-// ID - 22
-
-public class StudentCoreData22 implements Student {
+public class Decorator22StudentCoreData implements Decorator22Student {
     int id;
     String firstName;
     String lastName;
     String program;
     String level;
     String asurite;
-
+    String name;
+    int score;
+    ArrayList<Decorator22StudentGrades> gradeList = new ArrayList<Decorator22StudentGrades>();
+    ArrayList<Decorator22StudentAttendance> attendanceList = new ArrayList<Decorator22StudentAttendance>();
+    
     @Override
     public void setId(int id) {
         this.id = id;
@@ -74,6 +75,7 @@ public class StudentCoreData22 implements Student {
 
     @Override
     public void StudentAttendance(String date, int min) {
+
         // TODO Auto-generated method stub
 
     }
@@ -81,37 +83,37 @@ public class StudentCoreData22 implements Student {
     @Override
     public void StudentGrades(String name, int perc, int score) {
         // TODO Auto-generated method stub
-
     }
 
     @Override
-    public void addAttendance(StudentAttendance22 attendanceCard) {
+    public void addAttendance(Decorator22StudentAttendance attendanceCard) {
+        this.attendanceList.add(attendanceCard);
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    public void addGrades(StudentGrades22 gradesCard) {
+    public void addGrades(Decorator22StudentGrades gradesCard) {
+        // TODO Auto-generated method stub
+        this.gradeList.add(gradesCard);
+    }
+
+    @Override
+    public void add(Decorator22Student decorator22Student) {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    public void add(Student student) {
+    public ArrayList<Decorator22StudentAttendance> getAttendanceList() {
         // TODO Auto-generated method stub
-
+        return attendanceList;
     }
 
     @Override
-    public ArrayList<StudentAttendance22> getAttendanceList() {
+    public ArrayList<Decorator22StudentGrades> getGradesList() {
         // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public ArrayList<StudentGrades22> getGradesList() {
-        // TODO Auto-generated method stub
-        return null;
+        return gradeList;
     }
 
 }

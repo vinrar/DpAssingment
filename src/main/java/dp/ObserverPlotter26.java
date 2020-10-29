@@ -9,27 +9,27 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
 
-public class ObserverPlotter26 implements Observer {
+public class ObserverPlotter26 extends JPanel implements Observer {
 
 
     private StudentRepository21 studentRepository;
-    private ApplicationFrame applicationFrame;
-    ChartPanel chartPanel;
+    JFreeChart tempBarChart = ChartFactory.createBarChart(
+            "Student bar chart",
+            "Category",
+            "Score",
+            createDataset(),
+            PlotOrientation.VERTICAL,
+            true, true, false);
+    private ChartPanel chartPanel = new ChartPanel(tempBarChart);
 
-    public ObserverPlotter26() {
-
-        this.applicationFrame = new ApplicationFrame("Group 26");
-    }
-
-    public JPanel getPanel() {
-        return this.chartPanel;
-    }
+    public ObserverPlotter26() { }
 
     private CategoryDataset createDataset() {
 
@@ -40,10 +40,16 @@ public class ObserverPlotter26 implements Observer {
 
             for (Iterator21 it = studentRepository.getIterator(); it.hasNext(); ) {
 
-                Student student = (Student) it.next();
-                List<StudentGrades22> gradesList = student.getGradesList();
-                for (StudentGrades22 studentGrades22 : gradesList) {
-                    dataset.addValue(studentGrades22.score, Integer.toString(student.getId()), studentGrades22.name);
+                Decorator22StudentCoreData student = (Decorator22StudentCoreData) it.next();
+                List<Decorator22StudentGrades> gradesList = student.getGradesList();
+
+                if (gradesList != null) {
+                    System.out.println("In observer plotter 26");
+                    for (Decorator22StudentGrades studentGrades22 : gradesList) {
+                        dataset.addValue(studentGrades22.score, Integer.toString(student.getId()), studentGrades22.name);
+                    }
+                } else {
+                    System.out.println("grade list is null");
                 }
             }
         }
@@ -65,8 +71,11 @@ public class ObserverPlotter26 implements Observer {
                 true, true, false);
 
 
-        chartPanel = new ChartPanel(barChart);
-        chartPanel.setPreferredSize(new java.awt.Dimension(560, 367));
-        applicationFrame.setContentPane(chartPanel);
+
+        chartPanel.setChart(barChart);
+        //chartPanel.setPreferredSize(new java.awt.Dimension(560, 367));
+        this.add(chartPanel);
+        this.setPreferredSize(new Dimension(400, 600));
+        SwingUtilities.updateComponentTreeUI(this);
     }
 }

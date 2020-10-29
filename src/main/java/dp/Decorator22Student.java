@@ -1,8 +1,7 @@
-package dp;// ID - 22
-
+package dp;
 import java.util.ArrayList;
 
-public interface Student {
+public interface Decorator22Student {
 
     public void setId(int id);
 
@@ -34,12 +33,12 @@ public interface Student {
 
     public void addAttendance(Decorator22StudentAttendance attendanceCard);
 
-    public void addGrades(Decorator22StudentGrades gradesCard);
+    public void addGrades(Decorator22StudentGrades grades22);
 
     public ArrayList<Decorator22StudentAttendance> getAttendanceList();
 
     public ArrayList<Decorator22StudentGrades> getGradesList();
 
-    public void add(Student student);
+    public void add(Decorator22Student decorator22Student);
 
 }

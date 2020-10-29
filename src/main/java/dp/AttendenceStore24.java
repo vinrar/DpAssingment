@@ -2,11 +2,11 @@ package dp;
 
 public class AttendenceStore24 {
 
-    private Student asuId;
+    private Decorator22Student asuId;
     private String attendendeData;
     private String attendendeValue;
 
-    public AttendenceStore24(Student asu, String dte, String val) {
+    public AttendenceStore24(Decorator22Student asu, String dte, String val) {
         this.asuId = asu;
         this.attendendeData = dte;
         this.attendendeValue = val;
@@ -20,7 +20,7 @@ public class AttendenceStore24 {
         return attendendeValue;
     }
 
-    public Student getAsuId() {
+    public Decorator22Student getAsuId() {
         return asuId;
     }
 }
